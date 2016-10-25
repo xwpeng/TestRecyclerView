@@ -32,13 +32,20 @@ public class IntListAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_int_list, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_int_list, parent, false));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolder vh = (ViewHolder) holder;
-        vh.textView.setText(mData.get(position) + "");
+        final int data = mData.get(position);
+        vh.textView.setText(data + "");
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PublicUtil.showToast(data + "");
+            }
+        });
     }
 //
 //    /**
@@ -51,13 +58,14 @@ public class IntListAdapter extends RecyclerView.Adapter {
 //        onBindViewHolder(holder, position);
 //    }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View itemView) {
-            super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.item_int_list_textview);
-        }
-
+    private class ViewHolder extends RecyclerView.ViewHolder {
+        private View itemView;
         private TextView textView;
 
+        public ViewHolder(View itemView) {
+            super(itemView);
+            this.itemView = itemView;
+            textView = (TextView) itemView.findViewById(R.id.item_int_list_textview);
+        }
     }
 }
