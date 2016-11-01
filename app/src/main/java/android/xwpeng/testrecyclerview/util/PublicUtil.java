@@ -1,6 +1,7 @@
-package android.xwpeng.testrecyclerview;
+package android.xwpeng.testrecyclerview.util;
 
 import android.widget.Toast;
+import android.xwpeng.testrecyclerview.MyApp;
 
 /**
  * Created by xwpeng on 16-10-25.

@@ -1,10 +1,12 @@
-package android.xwpeng.testrecyclerview;
+package android.xwpeng.testrecyclerview.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.xwpeng.testrecyclerview.R;
+import android.xwpeng.testrecyclerview.util.PublicUtil;
 
 import java.util.List;
 

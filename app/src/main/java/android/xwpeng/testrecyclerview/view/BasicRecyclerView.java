@@ -1,4 +1,4 @@
-package android.xwpeng.testrecyclerview;
+package android.xwpeng.testrecyclerview.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
