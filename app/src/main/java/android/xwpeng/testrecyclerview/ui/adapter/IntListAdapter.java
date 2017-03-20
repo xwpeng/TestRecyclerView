@@ -49,7 +49,7 @@ public class IntListAdapter extends RecyclerView.Adapter {
                 PublicUtil.showToast("click: " + data);
             }
         });
-        vh.deleteView.setOnClickListener(new View.OnClickListener() {
+  /*      vh.deleteView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int adapterPosition = vh.getAdapterPosition();
@@ -58,7 +58,8 @@ public class IntListAdapter extends RecyclerView.Adapter {
                     PublicUtil.showToast("delete: " + position);
                 }
             }
-        });
+        });*/
+
 
     }
 //
