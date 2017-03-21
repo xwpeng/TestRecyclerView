@@ -27,7 +27,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements IntListAd
         mData = new ArrayList<>();
         for (int i = 0; i < 20; i++) mData.add(i);
         mAdapter = new IntListAdapter(mData, this);
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setDivider();
         mRecyclerView.setAdapter(mAdapter);
     }

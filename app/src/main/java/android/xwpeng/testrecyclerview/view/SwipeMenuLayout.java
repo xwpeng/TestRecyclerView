@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
@@ -14,24 +15,12 @@ import android.widget.LinearLayout;
  */
 
 public class SwipeMenuLayout extends LinearLayout {
-/*    private View mContentView;
-    private LinearLayout mMenuLayout;
-
-    public void  setContentView (View contentView) {
-        this.mContentView = contentView;
-        mContentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-    }
-    public void setMenuLayout(LinearLayout menuLayout) {
-        this.mMenuLayout = menuLayout;
-        mMenuLayout.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
-    }*/
-
     public SwipeMenuLayout(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public SwipeMenuLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, null, 0);
     }
 
     public SwipeMenuLayout(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -44,22 +33,27 @@ public class SwipeMenuLayout extends LinearLayout {
     }
 
     private float mLastX;
-    private float mLastY;
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX();
-        float y = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
-                if (Math.abs(x - mLastX) > Math.abs(y -mLastY)) {
-                    //滑动内容
-                    scrollBy((int)(mLastX - x), 0);
+                float dx = mLastX - x;
+                Log.e("xwpeng16", "scrollx: " + getScrollX());
+                if (dx > 0 && getScrollX() < 540){
+                    scrollBy((int)(dx), 0);
+                    if (getScrollX() > 540) {
+                        scrollTo(540, 0);
+                    }
                 }
-                break;
+                if (dx < 0 && getScrollX() > 0) {
+                    scrollBy((int)(dx), 0) ;
+                    if (getScrollX() < 0) {
+                        scrollTo(0,0);
+                    }
+                }
         }
         mLastX = x;
-        mLastY = y;
-        return super.onTouchEvent(event);
+        return true;
     }
 }

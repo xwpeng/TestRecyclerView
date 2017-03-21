@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.xwpeng.testrecyclerview.R;
-import android.xwpeng.testrecyclerview.util.PublicUtil;
 
 import java.util.List;
 
@@ -35,7 +34,8 @@ public class IntListAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_int_list, parent, false));
+//        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_int_list2, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_int_list4, parent, false));
     }
 
     @Override
@@ -43,12 +43,12 @@ public class IntListAdapter extends RecyclerView.Adapter {
         final ViewHolder vh = (ViewHolder) holder;
         final int data = mData.get(position);
         vh.contentView.setText(data + "");
-        vh.itemView.setOnClickListener(new View.OnClickListener() {
+      /*  vh.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PublicUtil.showToast("click: " + data);
             }
-        });
+        });*/
   /*      vh.deleteView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

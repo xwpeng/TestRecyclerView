@@ -6,10 +6,22 @@
     android:layout_height="match_parent"
     tools:context="android.xwpeng.testrecyclerview.ui.RecyclerViewActivity">
 
-    <android.xwpeng.testrecyclerview.view.BasicRecyclerView
+<!--    <android.xwpeng.testrecyclerview.view.BasicRecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-/>
+/>-->
+<!--        <android.xwpeng.testrecyclerview.view.MyRecyclerView2
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+/>-->
+        <android.xwpeng.testrecyclerview.view.MyRecyclerView4
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+       />
 </RelativeLayout>
