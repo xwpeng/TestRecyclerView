@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"
 />-->
-        <android.xwpeng.testrecyclerview.view.MyRecyclerView4
+        <android.xwpeng.testrecyclerview.view.BasicRecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

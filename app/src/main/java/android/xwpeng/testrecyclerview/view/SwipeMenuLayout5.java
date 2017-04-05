@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -13,6 +14,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
+import android.xwpeng.testrecyclerview.R;
 
 /**
  * Created by xwpeng on 17-3-22.
@@ -50,25 +52,15 @@ public class SwipeMenuLayout5 extends ViewGroup {
     //防止多只手指一起滑我的flag 在每次down里判断， touch事件结束清空
     private static boolean isTouching;
 
-    private VelocityTracker mVelocityTracker;//滑动速度变量
-    private android.util.Log LogUtils;
+    private VelocityTracker mVelocityTracker;//速度追踪器
 
-    /**
-     * 右滑删除功能的开关,默认开
-     */
-    private boolean isSwipeEnable;
+    private boolean isSwipeEnable = true;
+    private boolean isLeftSwipe = true;
 
-    /**
-     * IOS、QQ式交互，默认开
-     */
-    private boolean isIos;
-
+    private boolean isIos = true;
     private boolean iosInterceptFlag;//IOS类型下，是否拦截事件的flag
 
-    /**
-     * 20160929add 左滑右滑的开关,默认左滑打开菜单
-     */
-    private boolean isLeftSwipe;
+
 
     public SwipeMenuLayout5(Context context) {
         this(context, null);
@@ -87,11 +79,6 @@ public class SwipeMenuLayout5 extends ViewGroup {
         return isSwipeEnable;
     }
 
-    /**
-     * 设置侧滑功能开关
-     *
-     * @param swipeEnable
-     */
     public void setSwipeEnable(boolean swipeEnable) {
         isSwipeEnable = swipeEnable;
     }
@@ -101,11 +88,6 @@ public class SwipeMenuLayout5 extends ViewGroup {
         return isIos;
     }
 
-    /**
-     * 设置是否开启IOS阻塞式交互
-     *
-     * @param ios
-     */
     public SwipeMenuLayout5 setIos(boolean ios) {
         isIos = ios;
         return this;
@@ -115,12 +97,6 @@ public class SwipeMenuLayout5 extends ViewGroup {
         return isLeftSwipe;
     }
 
-    /**
-     * 设置是否开启左滑出菜单，设置false 为右滑出菜单
-     *
-     * @param leftSwipe
-     * @return
-     */
     public SwipeMenuLayout5 setLeftSwipe(boolean leftSwipe) {
         isLeftSwipe = leftSwipe;
         return this;
@@ -140,15 +116,7 @@ public class SwipeMenuLayout5 extends ViewGroup {
         mMaxVelocity = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
         //初始化滑动帮助类对象
         //mScroller = new Scroller(context);
-
-        //右滑删除功能的开关,默认开
-        isSwipeEnable = true;
-        //IOS、QQ式交互，默认开
-        isIos = true;
-        //左滑右滑的开关,默认左滑打开菜单
-        isLeftSwipe = true;
-        //xml属性设置,注释掉by xwpeng
-        /*TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SwipeMenuLayout, defStyleAttr, 0);
+        TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SwipeMenuLayout, defStyleAttr, 0);
         int count = ta.getIndexCount();
         for (int i = 0; i < count; i++) {
             int attr = ta.getIndex(i);
@@ -157,22 +125,17 @@ public class SwipeMenuLayout5 extends ViewGroup {
                 isSwipeEnable = ta.getBoolean(attr, true);
             } else if (attr == R.styleable.SwipeMenuLayout_ios) {
                 isIos = ta.getBoolean(attr, true);
-            } else if (attr == R.styleable.SwipeMenuLayout_leftSwipe) {
+            } else if (attr == R.styleable.SwipeMenuLayout_leftOrRight) {
                 isLeftSwipe = ta.getBoolean(attr, true);
             }
         }
-        ta.recycle();*/
-
-
+        ta.recycle();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        //Log.d(TAG, "onMeasure() called with: " + "widthMeasureSpec = [" + widthMeasureSpec + "], heightMeasureSpec = [" + heightMeasureSpec + "]");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
         setClickable(true);//令自己可点击，从而获取触摸事件
-
         mRightMenuWidths = 0;//由于ViewHolder的复用机制，每次这里要手动恢复初始值
         mHeight = 0;
         int contentWidth = 0;//适配GridLayoutManager，将以第一个子Item(即ContentItem)的宽度为控件宽度
@@ -404,7 +367,6 @@ public class SwipeMenuLayout5 extends ViewGroup {
         //禁止侧滑时，点击事件不受干扰。
         if (isSwipeEnable) {
             switch (ev.getAction()) {
-                //add by zhangxutong 2016 11 04 begin :
                 // fix 长按事件和侧滑的冲突。
                 case MotionEvent.ACTION_MOVE:
                     //屏蔽滑动时的事件

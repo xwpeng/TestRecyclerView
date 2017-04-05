@@ -2,6 +2,8 @@ package android.xwpeng.testrecyclerview.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.xwpeng.testrecyclerview.view.BasicRecyclerView;
 import android.xwpeng.testrecyclerview.ui.adapter.IntListAdapter;
 import android.xwpeng.testrecyclerview.R;
@@ -17,6 +19,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements IntListAd
     private BasicRecyclerView mRecyclerView;
     private List<Integer> mData;
     private IntListAdapter mAdapter;
+    ViewGroup
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -56,4 +56,40 @@
             android:layout_height="60dp"
             android:text="6" />
     </LinearLayout>
+
+    <android.xwpeng.testrecyclerview.view.SwipeMenuLayout4
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff0000">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="1" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="2" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="3" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="4" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="5" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="6" />
+    </android.xwpeng.testrecyclerview.view.SwipeMenuLayout4>
 </LinearLayout>

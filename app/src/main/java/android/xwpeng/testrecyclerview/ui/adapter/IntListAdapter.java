@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.xwpeng.testrecyclerview.R;
 import android.xwpeng.testrecyclerview.util.PublicUtil;
-import android.xwpeng.testrecyclerview.view.SwipeMenuLayout5;
+import android.xwpeng.testrecyclerview.view.SwipeMenuLayout6;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class IntListAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 //        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_int_list2, parent, false));
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_int_list5, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_int_list6, parent, false));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class IntListAdapter extends RecyclerView.Adapter {
         vh.contentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                vh.swipeMenuLayout.setLeftSwipe(true);
+//                vh.swipeMenuLayout.setSwipeEnable(true);
                 PublicUtil.showToast("click data:" + data);
             }
         });
@@ -56,7 +56,7 @@ public class IntListAdapter extends RecyclerView.Adapter {
             @Override
             public boolean onLongClick(View v) {
                 PublicUtil.showToast("long click data: " + data);
-                vh.swipeMenuLayout.setLeftSwipe(false);
+//                vh.swipeMenuLayout.setSwipeEnable(false);
                 return true;
             }
         });
@@ -80,7 +80,7 @@ public class IntListAdapter extends RecyclerView.Adapter {
             }
         });
 
-  /*      vh.deleteView.setOnClickListener(new View.OnClickListener() {
+        vh.deleteView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int adapterPosition = vh.getAdapterPosition();
@@ -89,7 +89,7 @@ public class IntListAdapter extends RecyclerView.Adapter {
                     PublicUtil.showToast("delete: " + position);
                 }
             }
-        });*/
+        });
 
 
     }
@@ -110,7 +110,7 @@ public class IntListAdapter extends RecyclerView.Adapter {
         private TextView deleteView;
         private TextView titleView;
         private View menu1, menu2, menu3 ;
-        private SwipeMenuLayout5 swipeMenuLayout;
+        private SwipeMenuLayout6 swipeMenuLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -121,7 +121,13 @@ public class IntListAdapter extends RecyclerView.Adapter {
             menu1 = itemView.findViewById(R.id.item_menu1);
             menu2 = itemView.findViewById(R.id.item_menu2);
             menu3 = itemView.findViewById(R.id.item_menu3);
-            swipeMenuLayout = (SwipeMenuLayout5)itemView.findViewById(R.id.item_swipe_menu_layout);
+            swipeMenuLayout = (SwipeMenuLayout6)itemView.findViewById(R.id.item_swipe_menu_layout);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PublicUtil.showToast("item view click");
+                }
+            });
         }
     }
 
